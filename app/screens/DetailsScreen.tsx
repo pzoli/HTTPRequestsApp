@@ -12,8 +12,12 @@ export default function DetailsScreen({ navigation, route }) {
     const [uri, setUri] = useState(route.params.uri);
 
     useEffect(() => {
-        setTitle('');
-    }, []);
+        const unsubscribe = navigation.addListener('focus', () => {
+            setTitle(route.params.title);
+            setUri(route.params.uri);
+        });
+        return unsubscribe;
+    }, [navigation]);
 
     console.log(`DetailsScreen title:${title}, uri:${uri}`);
 
