@@ -2,16 +2,15 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import MyButton from '../components/MyButton';
 import { styles } from '../Styles';
+import { store } from '../data/SignalSorage';
 
 export default function HomeScreen({ navigation, route }) {
-
-    let signals: any = route.params.signals;
 
     return (
         <ScrollView>
             <View style={styles.scrollContainer}>
                 {
-                    signals.map((signal) => {
+                    store.getSignalsArray().map((signal) => {
 
                         return (
                             <View key={signal.key} style={styles.buttonContainer}>

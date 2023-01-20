@@ -23,7 +23,6 @@ export default function ActionsScreen({ navigation, route }) {
                 <Button title='Clean...' onPress={async () => {
                     await store.clear();
                     navigation.navigate('HomeScreen', {
-                        signals: store.SignalsArray
                     });
                 }} />
             </View>
@@ -41,7 +40,6 @@ export default function ActionsScreen({ navigation, route }) {
                                 store.storeData().then(() => {
                                     store.init().then(() => {
                                         navigation.navigate('HomeScreen', {
-                                            signals: store.SignalsArray
                                         });
                                     });
                                 });
@@ -58,7 +56,7 @@ export default function ActionsScreen({ navigation, route }) {
                         if (pickerResult != null) {
                             const savedFileName = Dirs.DocumentDir + '/signals.json';
                             console.log(savedFileName);
-                            FileSystem.writeFile(savedFileName, JSON.stringify(store.SignalsArray, undefined, 4)).then((e) => {
+                            FileSystem.writeFile(savedFileName, JSON.stringify(store.getSignalsArray(), undefined, 4)).then((e) => {
                                 // Check target OS
                                 let path: string;
                                 if (Platform.OS == 'android') {

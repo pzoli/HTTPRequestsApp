@@ -2,12 +2,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class SignalStorage {
 
-    public SignalsArray: Array<any> = [];
+    private SignalsArray: Array<{ key: number; title: string; uri: string }> = [];
 
     constructor() {
-        this.SignalsArray = [];
+        this.SignalsArray = new Array<{ key: number; title: string; uri: string }>();
     }
 
+    public getSignalsArray(): Array<{ key: number; title: string; uri: string }> {
+        return this.SignalsArray;
+    }
     public init = async () => {
         let stored = await this.getData();
         if (stored != null) {
@@ -15,7 +18,7 @@ export class SignalStorage {
         }
     }
 
-    private getData = async (): Promise<Array<any> | null> => {
+    private getData = async (): Promise<Array<{ key: number; title: string; uri: string }> | null> => {
         try {
             const jsonValue = await AsyncStorage.getItem('@signals');
             if (jsonValue != null) {
@@ -39,7 +42,7 @@ export class SignalStorage {
         }
     }
 
-    public save(signal: { key: number; title: any; uri: any; }) {
+    public save(signal: { key: number; title: string; uri: string; }) {
         this.SignalsArray.push(signal);
         this.storeData();
     }

@@ -37,7 +37,6 @@ export default function DetailsScreen({ navigation, route }) {
                     console.log(`title=${title}, uri=${uri}`);
                     navigation.navigate({
                         name: 'HomeScreen',
-                        merge: true,
                     });
                 }} />
             </View>
