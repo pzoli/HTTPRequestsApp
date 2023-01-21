@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, GestureResponderEvent, ButtonProps } from 'react-native';
 
 interface MyButtonProps extends ButtonProps {
-  signature: string;
+  uri: string;
+  key: number;
 }
 
 export default class MyButton extends React.Component<MyButtonProps, {}> {
@@ -17,7 +18,7 @@ export default class MyButton extends React.Component<MyButtonProps, {}> {
     return (
       <Button
         onPress={(event: GestureResponderEvent) => {
-          this._onPressButton(this.props.signature);
+          this._onPressButton(this.props.uri);
           if (onPress !== undefined) {
             onPress(event);
           }

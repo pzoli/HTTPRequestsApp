@@ -15,7 +15,8 @@ export default function HomeScreen({ navigation, route }) {
                         return (
                             <View key={signal.key} style={styles.buttonContainer}>
                                 <MyButton
-                                    signature={signal.uri}
+                                    key={signal.key}
+                                    uri={signal.uri}
                                     title={signal.title}
                                 />
                             </View>
