@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './app/screens/HomeScreen';
 import ActionsScreen from './app/screens/ActionsScreen';
 import DetailsScreen from './app/screens/DetailsScreen';
-import { store } from './app/data/SignalSorage';
+import { store } from './app/data/SignalStorage';
 
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';

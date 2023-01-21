@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Button, View } from 'react-native';
-import { store } from '../data/SignalSorage';
+import { store } from '../data/SignalStorage';
 import { styles } from '../Styles';
 import { AndroidScoped, Dirs, FileSystem } from 'react-native-file-access';
 import DocumentPicker from 'react-native-document-picker';

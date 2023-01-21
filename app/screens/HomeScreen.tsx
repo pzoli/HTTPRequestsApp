@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import MyButton from '../components/MyButton';
 import { styles } from '../Styles';
-import { store } from '../data/SignalSorage';
+import { store } from '../data/SignalStorage';
 
 export default function HomeScreen({ navigation, route }) {
 

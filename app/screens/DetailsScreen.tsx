@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 import { styles } from '../Styles';
-import { store } from '../data/SignalSorage';
+import { store } from '../data/SignalStorage';
 
 
 export default function DetailsScreen({ navigation, route }) {
