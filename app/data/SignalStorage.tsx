@@ -11,11 +11,33 @@ export class SignalStorage {
     public getSignalsArray(): Array<{ key: number; title: string; uri: string }> {
         return this.SignalsArray;
     }
+
     public init = async () => {
         let stored = await this.getData();
         if (stored != null) {
             this.merge(stored);
         }
+    }
+
+    public getElementById(key: number): { key: number; title: string; uri: string } | undefined {
+        return this.SignalsArray.find((element) => element.key == key);;
+    }
+
+    public getElementIndexById(key: number): number {
+        return this.SignalsArray.findIndex((element) => element.key == key);
+    }
+
+    public updateOrAppendElement(element: { key: number; title: string; uri: string }) {
+        let index = this.getElementIndexById(element.key);
+        if (index > -1) {
+            this.SignalsArray[index] = element;
+        } else {
+            this.SignalsArray = [...this.SignalsArray, element];
+        }
+    }
+
+    public removeElement(key: number) {
+        this.SignalsArray = this.SignalsArray.filter((element) => { element.key != key });
     }
 
     private getData = async (): Promise<Array<{ key: number; title: string; uri: string }> | null> => {

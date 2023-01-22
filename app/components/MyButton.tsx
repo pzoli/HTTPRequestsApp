@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, GestureResponderEvent, ButtonProps } from 'react-native';
+import { StyleSheet, Pressable, GestureResponderEvent, PressableProps, Text } from 'react-native';
 
-interface MyButtonProps extends ButtonProps {
-  uri: string;
+interface MyButtonProps extends PressableProps {
   key: number;
+  uri: string;
+  title: string;
 }
 
 export default class MyButton extends React.Component<MyButtonProps, {}> {
@@ -16,15 +17,36 @@ export default class MyButton extends React.Component<MyButtonProps, {}> {
   render() {
     const { onPress, ...rest } = this.props;
     return (
-      <Button
+      <Pressable style={({ pressed }) => [
+        {
+          backgroundColor: pressed ? '#3F8f7F' : '#318ce7',
+        }, styles.pressableStyle]}
         onPress={(event: GestureResponderEvent) => {
           this._onPressButton(this.props.uri);
-          if (onPress !== undefined) {
+          if (onPress !== undefined && onPress !== null) {
             onPress(event);
           }
+
         }}
         {...rest}
-      />
+      >
+        <Text style={styles.titleStyle}>{this.props.title}</Text>
+      </Pressable>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  titleStyle: {
+    color: 'white',
+    fontSize: 30,
+    textAlign: 'center'
+
+  },
+  pressableStyle: {
+    alignContent: 'center',
+    justifyContent: 'center',
+    height: 100,
+    borderRadius: 10
+  },
+})

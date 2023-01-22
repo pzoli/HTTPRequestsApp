@@ -3,7 +3,6 @@ import { Button, Text, TextInput, View } from 'react-native';
 import { styles } from '../Styles';
 import { store } from '../data/SignalStorage';
 
-
 export default function DetailsScreen({ navigation, route }) {
     console.log(`Route title:${route.params.title}`);
     console.log(`Route uri:${route.params.uri}`);
@@ -37,6 +36,7 @@ export default function DetailsScreen({ navigation, route }) {
                     console.log(`title=${title}, uri=${uri}`);
                     navigation.navigate({
                         name: 'HomeScreen',
+                        signals: store.getSignalsArray()
                     });
                 }} />
             </View>

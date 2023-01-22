@@ -13,18 +13,12 @@ import mergeOptions from 'merge-options';
 
 const Drawer = createDrawerNavigator();
 
-const detailsListeners = ({ navigation, route }) => ({
-  focus: (e) => {
-    console.log('DetailsScreen focused.')
-  }
-})
-
 const homeScreenListeners = ({ navigation, route }) => ({
   focus: async (e) => {
     console.log('HomeScreen focused.');
     await store.init();
     navigation.setParams({
-      signals: store.getSignalsArray()
+      signals: store.getSignalsArray(),
     });
   }
 })
@@ -44,7 +38,6 @@ const App = () => {
             uri: '',
             saveItem: false
           }}
-          listeners={detailsListeners}
           options={{ drawerItemStyle: { height: 0 } }}
         />
         <Drawer.Screen name="Actions" component={ActionsScreen} />

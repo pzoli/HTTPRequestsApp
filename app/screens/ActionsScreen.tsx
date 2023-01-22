@@ -23,6 +23,7 @@ export default function ActionsScreen({ navigation, route }) {
                 <Button title='Clean...' onPress={async () => {
                     await store.clear();
                     navigation.navigate('HomeScreen', {
+                        signals: store.getSignalsArray()
                     });
                 }} />
             </View>
@@ -40,6 +41,7 @@ export default function ActionsScreen({ navigation, route }) {
                                 store.storeData().then(() => {
                                     store.init().then(() => {
                                         navigation.navigate('HomeScreen', {
+                                            signals: store.getSignalsArray()
                                         });
                                     });
                                 });
