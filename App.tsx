@@ -23,6 +23,9 @@ const homeScreenListeners = ({ navigation, route }) => ({
   focus: async (e) => {
     console.log('HomeScreen focused.');
     await store.init();
+    navigation.setParams({
+      signals: store.getSignalsArray()
+    });
   }
 })
 

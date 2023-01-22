@@ -6,11 +6,13 @@ import { store } from '../data/SignalStorage';
 
 export default function HomeScreen({ navigation, route }) {
 
+    let signals = route.params.signals;
+
     return (
         <ScrollView>
             <View style={styles.scrollContainer}>
                 {
-                    store.getSignalsArray().map((signal) => {
+                    signals.map((signal) => {
 
                         return (
                             <View key={signal.key} style={styles.buttonContainer}>
