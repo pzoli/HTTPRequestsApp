@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Pressable, GestureResponderEvent, PressableProps, Text } from 'react-native';
+import { styles } from '../Styles';
 
 interface MyButtonProps extends PressableProps {
   key: number;
@@ -35,27 +36,16 @@ export default class MyButton extends React.Component<MyButtonProps, {}> {
         }}
         {...rest}
       >
-        <Text style={self.props.selectMode ? styles.selectedTitleStyle : styles.titleStyle}>{this.props.title}</Text>
+        <Text style={self.props.selectMode ? buttonStyles.selectedTitleStyle : styles.titleStyle}>{this.props.title}</Text>
       </Pressable>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  titleStyle: {
-    color: 'white',
-    fontSize: 30,
-    textAlign: 'center'
-  },
+const buttonStyles = StyleSheet.create({
   selectedTitleStyle: {
     color: 'black',
     fontSize: 30,
     textAlign: 'center'
-  },
-  pressableStyle: {
-    alignContent: 'center',
-    justifyContent: 'center',
-    height: 100,
-    borderRadius: 10
-  },
+  }
 })

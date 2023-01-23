@@ -12,11 +12,13 @@ export const styles = StyleSheet.create({
         fontSize: 25,
         borderColor: "#888",
         borderWidth: 1,
+        borderRadius: 10,
         color: "black",
 
     },
     input_title: {
-        fontSize: 25,
+        fontSize: 30,
+        fontWeight: 'bold',
         color: "black",
     },
     scrollContainer: {
@@ -31,5 +33,16 @@ export const styles = StyleSheet.create({
     },
     actionButtonView: {
         margin: 20,
-    }
+    },
+    pressableStyle: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        height: 100,
+        borderRadius: 10
+    },
+    titleStyle: {
+        color: 'white',
+        fontSize: 30,
+        textAlign: 'center'
+    },
 });
