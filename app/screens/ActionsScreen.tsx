@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Button, View } from 'react-native';
+import { Platform, Button, View, TouchableOpacity, Text } from 'react-native';
 import { store } from '../data/SignalStorage';
 import { styles } from '../Styles';
 import { AndroidScoped, Dirs, FileSystem } from 'react-native-file-access';
@@ -11,25 +11,29 @@ export default function ActionsScreen({ navigation, route }) {
     return (
         <View style={styles.actionButtonContainer}>
             <View style={styles.actionButtonView}>
-                <Button title='Add Item...' onPress={() => {
+                <TouchableOpacity style={[{ backgroundColor: '#318ce7' }, styles.pressableStyle]} onPress={() => {
                     navigation.navigate('Details', {
                         title: '',
                         uri: '',
                         saveItem: false,
                     });
-                }} />
+                }} >
+                    <Text style={styles.titleStyle}>Add Item...</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.actionButtonView}>
-                <Button title='Clean...' onPress={async () => {
+                <TouchableOpacity style={[{ backgroundColor: '#318ce7' }, styles.pressableStyle]} onPress={async () => {
                     await store.clear();
                     navigation.navigate('HomeScreen', {
                         signals: store.getSignalsArray()
                     });
-                }} />
+                }}>
+                    <Text style={styles.titleStyle}>Clean</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.actionButtonView}>
-                <Button title='Import' onPress={async () => {
-                    await DocumentPicker.pickSingle({ type: 'application/json' }).then((pickerResult) => {
+                <TouchableOpacity style={[{ backgroundColor: '#318ce7' }, styles.pressableStyle]} onPress={async () => {
+                    await DocumentPicker.pickSingle(/*{ type: 'application/json' }*/).then((pickerResult) => {
                         console.log(pickerResult);
                         const importFileName = Dirs.DocumentDir + '/signals.json';
                         FileSystem.cp(pickerResult.uri, importFileName).then(() => {
@@ -50,10 +54,12 @@ export default function ActionsScreen({ navigation, route }) {
                     }).catch((e) => {
                         console.log('Rejected!');
                     });
-                }} />
+                }}>
+                    <Text style={styles.titleStyle}>Import</Text>
+                </TouchableOpacity>
             </View>
             <View style={styles.actionButtonView}>
-                <Button title='Export' onPress={async () => {
+                <TouchableOpacity style={[{ backgroundColor: '#318ce7' }, styles.pressableStyle]} onPress={async () => {
                     await DocumentPicker.pickDirectory().then((pickerResult) => {
                         if (pickerResult != null) {
                             const savedFileName = Dirs.DocumentDir + '/signals.json';
@@ -74,7 +80,9 @@ export default function ActionsScreen({ navigation, route }) {
                     }).catch((e) => {
                         console.log('Rejected!');
                     });
-                }} />
+                }}>
+                    <Text style={styles.titleStyle}>Export</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

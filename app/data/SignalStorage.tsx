@@ -37,7 +37,10 @@ export class SignalStorage {
     }
 
     public removeElement(key: number) {
-        this.SignalsArray = this.SignalsArray.filter((element) => { element.key != key });
+        let updatedArray = this.SignalsArray.filter((element) =>
+            element.key !== key
+        );
+        this.SignalsArray = updatedArray;
     }
 
     private getData = async (): Promise<Array<{ key: number; title: string; uri: string }> | null> => {
