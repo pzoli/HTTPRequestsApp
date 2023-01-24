@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Pressable, GestureResponderEvent, PressableProps, Text } from 'react-native';
+import { StyleSheet, Pressable, GestureResponderEvent, PressableProps, Text, Alert } from 'react-native';
 import { styles } from '../Styles';
 
 interface MyButtonProps extends PressableProps {
@@ -13,7 +13,7 @@ interface MyButtonProps extends PressableProps {
 export default class MyButton extends React.Component<MyButtonProps, {}> {
   _onPressButton = (uri: string) => {
     fetch(uri).then((res) => {
-      console.log(res);
+      Alert.alert('Result code', res.status.toString());
     }).catch((e) => console.log(e));
   };
 

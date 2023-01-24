@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Button, View, TouchableOpacity, Text } from 'react-native';
+import { Platform, Button, View, TouchableOpacity, Text, Alert } from 'react-native';
 import { store } from '../data/SignalStorage';
 import { styles } from '../Styles';
 import { AndroidScoped, Dirs, FileSystem } from 'react-native-file-access';
@@ -15,6 +15,7 @@ export default function ActionsScreen({ navigation, route }) {
                     navigation.navigate('Details', {
                         title: '',
                         uri: '',
+                        key: undefined,
                         saveItem: false,
                     });
                 }} >
@@ -34,21 +35,28 @@ export default function ActionsScreen({ navigation, route }) {
             <View style={styles.actionButtonView}>
                 <TouchableOpacity style={[{ backgroundColor: '#318ce7' }, styles.pressableStyle]} onPress={async () => {
                     await DocumentPicker.pickSingle(/*{ type: 'application/json' }*/).then((pickerResult) => {
-                        console.log(pickerResult);
+                        //console.log(pickerResult);
                         const importFileName = Dirs.DocumentDir + '/signals.json';
                         FileSystem.cp(pickerResult.uri, importFileName).then(() => {
-                            console.log('File copy ready.');
+                            //console.log('File copy ready.');
                             FileSystem.readFile(importFileName).then((text) => {
-                                console.log(`${importFileName} file content: ${text}`);
-                                const importedSignals = JSON.parse(text);
-                                store.merge(importedSignals);
-                                store.storeData().then(() => {
-                                    store.init().then(() => {
-                                        navigation.navigate('HomeScreen', {
-                                            signals: store.getSignalsArray()
+                                //console.log(`${importFileName} file content: ${text}`);
+                                try {
+                                    const importedSignals = JSON.parse(text);
+                                    store.merge(importedSignals);
+                                    store.storeData().then(() => {
+                                        store.init().then(() => {
+                                            navigation.navigate('HomeScreen', {
+                                                signals: store.getSignalsArray()
+                                            });
                                         });
                                     });
-                                });
+
+                                } catch (e) {
+                                    Alert.alert(JSON.stringify(e));
+                                    console.error(e);
+                                }
+
                             });
                         })
                     }).catch((e) => {

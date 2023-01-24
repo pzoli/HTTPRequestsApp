@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
+import { TouchableOpacity, Text, View, ScrollView, Button, Pressable, Image } from 'react-native';
 import MyButton from '../components/MyButton';
 import { styles } from '../Styles';
 import { store } from '../data/SignalStorage';
@@ -74,7 +74,7 @@ export default function HomeScreen({ navigation, route }) {
                     {
                         signals.map((signal) => {
                             return (
-                                <View key={signal.key} style={styles.buttonContainer}>
+                                <View key={signal.key} style={selectMode ? styles.buttonContainerInSelectMode : styles.buttonContainer}>
                                     <MyButton
                                         key={signal.key}
                                         uri={signal.uri}
@@ -84,6 +84,18 @@ export default function HomeScreen({ navigation, route }) {
                                         onPress={() => { selectMode ? updateSelection(signal.key) : null }}
                                         selected={getSelection(signal.key)}
                                     />
+                                    {selectMode ?
+                                        <Pressable style={{ height: '50%', alignContent: 'center', justifyContent: 'center' }} onPress={() => {
+                                            navigation.navigate('Details', {
+                                                title: signal.title,
+                                                uri: signal.uri,
+                                                key: signal.key
+                                            });
+                                        }}>
+                                            <Image source={require('../assets/edit.png')} style={{ width: 50, height: 50 }} />
+                                        </Pressable>
+                                        : null
+                                    }
                                 </View>
                             )
                         })

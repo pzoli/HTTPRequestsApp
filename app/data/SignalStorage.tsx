@@ -27,13 +27,14 @@ export class SignalStorage {
         return this.SignalsArray.findIndex((element) => element.key == key);
     }
 
-    public updateOrAppendElement(element: { key: number; title: string; uri: string }) {
+    public async updateOrAppendElement(element: { key: number; title: string; uri: string }) {
         let index = this.getElementIndexById(element.key);
         if (index > -1) {
             this.SignalsArray[index] = element;
         } else {
             this.SignalsArray = [...this.SignalsArray, element];
         }
+        await this.storeData();
     }
 
     public removeElement(key: number) {
@@ -65,11 +66,6 @@ export class SignalStorage {
         } catch (e) {
             console.log(e);
         }
-    }
-
-    public save(signal: { key: number; title: string; uri: string; }) {
-        this.SignalsArray.push(signal);
-        this.storeData();
     }
 
     public merge(array: Array<any>): void {

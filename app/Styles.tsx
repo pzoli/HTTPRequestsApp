@@ -8,6 +8,14 @@ export const styles = StyleSheet.create({
     buttonContainer: {
         margin: 20,
     },
+    buttonContainerInSelectMode: {
+        margin: 20,
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+
+    },
     input: {
         fontSize: 25,
         borderColor: "#888",
@@ -38,6 +46,7 @@ export const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center',
         height: 100,
+        width: '100%',
         borderRadius: 10
     },
     titleStyle: {
