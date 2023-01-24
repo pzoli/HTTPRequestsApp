@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
     actionButtonContainer: {
         height: '100%',
         flex: 1,
-        justifyContent: "center",
         alignContent: "center"
     },
     actionButtonView: {

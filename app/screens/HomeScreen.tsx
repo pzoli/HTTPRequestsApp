@@ -52,56 +52,58 @@ export default function HomeScreen({ navigation, route }) {
         );
     } else {
         return (
-            <ScrollView>
-                {
-                    selectMode ?
-                        <View style={{ flexDirection: 'row' }}>
-                            <View style={homeStyles.actionView}>
-                                <TouchableOpacity style={homeStyles.actionTouchableStyle} onPress={() => { setSelectMode(false) }}>
-                                    <Text style={homeStyles.actionText}>Cancel</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={homeStyles.actionView}>
-                                <TouchableOpacity style={homeStyles.actionTouchableStyle} onPress={deleteSelections}>
-                                    <Text style={homeStyles.actionText} >Delete</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        : null
-                }
-
-                <View style={styles.scrollContainer}>
+            <View>
+                <ScrollView>
+                    <View style={styles.scrollContainer}>
+                        {
+                            signals.map((signal) => {
+                                return (
+                                    <View key={signal.key} style={selectMode ? styles.buttonContainerInSelectMode : styles.buttonContainer}>
+                                        <MyButton
+                                            key={signal.key}
+                                            uri={signal.uri}
+                                            title={signal.title}
+                                            selectMode={selectMode}
+                                            onLongPress={() => { setSelectedButtons([signal.key]); setSelectMode(true) }}
+                                            onPress={() => { selectMode ? updateSelection(signal.key) : null }}
+                                            selected={getSelection(signal.key)}
+                                        />
+                                        {selectMode ?
+                                            <Pressable style={{ height: '100%', width: 50, alignContent: 'center', justifyContent: 'center', position: 'absolute', right: 10 }} onPress={() => {
+                                                navigation.navigate('Details', {
+                                                    title: signal.title,
+                                                    uri: signal.uri,
+                                                    key: signal.key
+                                                });
+                                            }}>
+                                                <Image source={require('../assets/edit.png')} style={{ width: 50, height: 50 }} />
+                                            </Pressable>
+                                            : null
+                                        }
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
                     {
-                        signals.map((signal) => {
-                            return (
-                                <View key={signal.key} style={selectMode ? styles.buttonContainerInSelectMode : styles.buttonContainer}>
-                                    <MyButton
-                                        key={signal.key}
-                                        uri={signal.uri}
-                                        title={signal.title}
-                                        selectMode={selectMode}
-                                        onLongPress={() => { setSelectedButtons([signal.key]); setSelectMode(true) }}
-                                        onPress={() => { selectMode ? updateSelection(signal.key) : null }}
-                                        selected={getSelection(signal.key)}
-                                    />
-                                    {selectMode ?
-                                        <Pressable style={{ height: '100%', width: 50, alignContent: 'center', justifyContent: 'center' }} onPress={() => {
-                                            navigation.navigate('Details', {
-                                                title: signal.title,
-                                                uri: signal.uri,
-                                                key: signal.key
-                                            });
-                                        }}>
-                                            <Image source={require('../assets/edit.png')} style={{ width: 50, height: 50 }} />
-                                        </Pressable>
-                                        : null
-                                    }
+                        selectMode ?
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={homeStyles.actionView}>
+                                    <TouchableOpacity style={homeStyles.actionTouchableStyle}
+                                        onPress={() => { setSelectMode(false) }}>
+                                        <Text style={homeStyles.actionText}>Cancel</Text>
+                                    </TouchableOpacity>
                                 </View>
-                            )
-                        })
+                                <View style={homeStyles.actionView}>
+                                    <TouchableOpacity style={homeStyles.actionTouchableStyle} onPress={deleteSelections}>
+                                        <Text style={homeStyles.actionText} >Delete</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            : null
                     }
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
         );
     }
 }
@@ -109,10 +111,10 @@ export default function HomeScreen({ navigation, route }) {
 const homeStyles = StyleSheet.create({
     actionView: {
         width: '50%',
-        margin: 10
     },
     actionTouchableStyle: {
         backgroundColor: '#318ce7',
+        margin: 20
     },
     actionText: {
         textAlign: 'center',

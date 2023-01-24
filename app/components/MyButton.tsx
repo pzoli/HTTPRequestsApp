@@ -23,7 +23,7 @@ export default class MyButton extends React.Component<MyButtonProps, {}> {
     return (
       <Pressable style={({ pressed }) => [
         {
-          backgroundColor: self.props.selectMode ? (self.props.selected ? '#f2f50a' : '#e0e19a') : (pressed ? '#3F8f7F' : '#318ce7'),
+          backgroundColor: self.props.selectMode ? (self.props.selected ? '#1c86d0' : '#9ac4e1') : (pressed ? '#3F8f7F' : '#318ce7'),
         }, styles.pressableStyle]}
         onPress={(event: GestureResponderEvent) => {
           if (!self.props.selectMode) {
@@ -44,7 +44,7 @@ export default class MyButton extends React.Component<MyButtonProps, {}> {
 
 const buttonStyles = StyleSheet.create({
   selectedTitleStyle: {
-    color: 'black',
+    color: 'white',
     fontSize: 30,
     textAlign: 'center'
   }
