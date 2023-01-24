@@ -36,6 +36,7 @@ export default function DetailsScreen({ navigation, route }) {
             </View>
             <View style={{ margin: 15 }}>
                 <TouchableOpacity style={[{ backgroundColor: '#318ce7' }, styles.pressableStyle]} onPress={() => {
+                    console.log(`key:${key}`)
                     store.updateOrAppendElement({ key: key, title: title, uri: uri }).then(() => {
                         //console.log(`title=${title}, uri=${uri}`);
                         navigation.navigate({

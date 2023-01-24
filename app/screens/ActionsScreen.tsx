@@ -15,8 +15,7 @@ export default function ActionsScreen({ navigation, route }) {
                     navigation.navigate('Details', {
                         title: '',
                         uri: '',
-                        key: undefined,
-                        saveItem: false,
+                        key: store.getLastKey() + 1,
                     });
                 }} >
                     <Text style={styles.titleStyle}>Add Item...</Text>
