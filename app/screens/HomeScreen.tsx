@@ -85,7 +85,7 @@ export default function HomeScreen({ navigation, route }) {
                                         selected={getSelection(signal.key)}
                                     />
                                     {selectMode ?
-                                        <Pressable style={{ height: '50%', alignContent: 'center', justifyContent: 'center' }} onPress={() => {
+                                        <Pressable style={{ height: '100%', width: 50, alignContent: 'center', justifyContent: 'center' }} onPress={() => {
                                             navigation.navigate('Details', {
                                                 title: signal.title,
                                                 uri: signal.uri,

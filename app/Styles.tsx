@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-
     },
     input: {
         fontSize: 25,
@@ -30,8 +29,7 @@ export const styles = StyleSheet.create({
         color: "black",
     },
     scrollContainer: {
-        height: '100%',
-        color: "black",
+
     },
     actionButtonContainer: {
         height: '100%',
