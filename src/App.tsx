@@ -1,14 +1,12 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
 
-import HomeScreen from './screens/HomeScreen';
-import ActionsScreen from './screens/ActionsScreen';
-import DetailsScreen from './screens/DetailsScreen';
-import { store } from './data/SignalStorage';
+import HomeScreen from './screens/HomeScreen'
+import ActionsScreen from './screens/ActionsScreen'
+import DetailsScreen from './screens/DetailsScreen'
+import { store } from './data/SignalStorage'
 import 'react-native-gesture-handler'
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Platform, View } from 'react-native';
-
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 const Drawer = createDrawerNavigator();
 
